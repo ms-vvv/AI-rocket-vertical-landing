@@ -12,7 +12,7 @@ class IObject(ABC):
 
     def __init__(self,
                  mass: float,
-                 originOfCoordinates: _VectorIn3D,
+                 originCoordinates: _VectorIn3D,
                  rotationMatrix: NDArray[Shape["3,3"], Float],
                  velocityMatrix: _VectorIn3D,
                  accelerationMatrix: _VectorIn3D,
@@ -22,7 +22,7 @@ class IObject(ABC):
                  ) -> None:
         IObject.numberOfObjects += 1
         self.mass = mass  # Mass of the object
-        self.originOfCoordinates = originOfCoordinates  # Position of origin of coordinate system defining object
+        self.originCoordinates = originCoordinates  # Position of origin of coordinate system defining object
         self.rotationMatrix = rotationMatrix  # Rotation matrix composed of vectors defining local coordinate system
         self.velocityMatrix = velocityMatrix  # [X, Y, Z] components of velocity in local coordinate system
         self.accelerationMatrix = accelerationMatrix  # [X, Y, Z] components of acceleration in local coordinate system
