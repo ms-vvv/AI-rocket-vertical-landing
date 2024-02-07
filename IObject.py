@@ -2,7 +2,6 @@ from abc import ABC
 from nptyping import NDArray, Shape, Float
 
 
-
 class IObject(ABC):
     """Interface defining basic physical object"""
 
