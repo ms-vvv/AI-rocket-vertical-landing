@@ -2,6 +2,7 @@ from typing import List
 from IObject import IObject
 from nptyping import NDArray, Shape, Float
 
+from force_generarors.IAerodynamicForces import IAerodynamicForces
 from force_generarors.IAerodynamicSurface import IAerodynamicSurface
 from force_generarors.IEngine import IEngine
 from force_generarors.IThruster import IThruster
@@ -9,14 +10,14 @@ from force_generarors.IThruster import IThruster
 
 class IRocket(IObject):
     def __init__(self,
-                 mass: float,
-                 originCoordinates: IObject._VectorIn3D,
-                 rotationMatrix: NDArray[Shape["3,3"], Float],
-                 velocityMatrix: IObject._VectorIn3D,
-                 accelerationMatrix: IObject._VectorIn3D,
-                 momentOfInertiaMatrix: IObject._VectorIn3D,
-                 angularVelocity: IObject._VectorIn3D,
-                 angularAcceleration: IObject._VectorIn3D,
+                 mass: List[float],
+                 originCoordinates: List[IObject.VectorIn3D],
+                 rotationMatrix: List[NDArray[Shape["3,3"], Float]],
+                 velocityMatrix: List[IObject.VectorIn3D],
+                 accelerationMatrix: List[IObject.VectorIn3D],
+                 momentOfInertiaMatrix: List[IObject.VectorIn3D],
+                 angularVelocity: List[IObject.VectorIn3D],
+                 angularAcceleration: List[IObject.VectorIn3D],
                  ) -> None:
         super().__init__(mass,
                          originCoordinates,
@@ -29,6 +30,7 @@ class IRocket(IObject):
         self.engines: List[IEngine] = []
         self.aerodynamicSurfaces: List[IAerodynamicSurface] = []
         self.thrusters: List[IThruster] = []
+        self.aerodynamicForces: List[IAerodynamicForces] = []
 
     def addEngines(self, *engines: IEngine) -> None:
         for engine in engines:

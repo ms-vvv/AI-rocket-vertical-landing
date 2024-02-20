@@ -1,23 +1,21 @@
 from abc import abstractmethod
 
-from force_generarors.IForceGenerator import IForceGenerator
+from Exeptions.ValueOutOfTheBoundError import ValueOutOfTheBoundError
+from IObject import IObject
+from force_generarors.IAerodynamicForces import IAerodynamicForces
 
 
-class IAerodynamicSurface(IForceGenerator):
+class IAerodynamicSurface(IAerodynamicForces):
     """Interface defining movable aerodynamic surface"""
 
     @abstractmethod
-    def setDeflectionAngle(self, deflectionAngle: float) -> None:
-        pass
+    def setDeflection(self, deflection: float) -> None:
+        lower_bound: float = -1
+        upper_bound: float = 1
+        if deflection > upper_bound or deflection < lower_bound:
+            raise ValueOutOfTheBoundError(deflection, lower_bound, upper_bound)
 
     @abstractmethod
     def getDeflectionAngle(self) -> float:
         pass
 
-    @abstractmethod
-    def setAirVelocity(self, airVelocity: float) -> None:
-        pass
-
-    @abstractmethod
-    def setAngleOfAttack(self, AngleOfAttack: float) -> None:
-        pass
