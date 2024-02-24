@@ -9,4 +9,5 @@ class IThruster(IForceGenerator):
 
     @abstractmethod
     def fireThruster(self, fireThruster: bool) -> None:
+        """method changing state of the thruster; True-> Firing, False-> not firing"""
         pass

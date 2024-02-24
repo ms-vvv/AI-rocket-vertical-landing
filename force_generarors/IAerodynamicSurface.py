@@ -16,6 +16,6 @@ class IAerodynamicSurface(IAerodynamicForces):
             raise ValueOutOfTheBoundError(deflection, lower_bound, upper_bound)
 
     @abstractmethod
-    def getDeflectionAngle(self) -> float:
+    def getDeflection(self) -> float:
         pass
 

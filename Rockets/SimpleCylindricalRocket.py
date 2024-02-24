@@ -5,29 +5,30 @@ from nptyping import NDArray, Shape, Float
 
 from IObject import IObject
 from Objects.IRocket import IRocket
+from Point import Point
 
 
 class SimpleCylindricalRocket(IRocket):
     def __init__(self,
-                 mass: float,
+                 initialMass: float,
                  originCoordinates: IObject.VectorIn3D,
                  rotationMatrix: NDArray[Shape["3,3"], Float],
                  velocityMatrix: IObject.VectorIn3D,
                  accelerationMatrix: IObject.VectorIn3D,
                  angularVelocity: IObject.VectorIn3D,
                  angularAcceleration: IObject.VectorIn3D,
-                 positionOfReferencePoint: IObject.VectorIn3D,
+                 positionOfReferencePoint: Point,
                  rocketRadius: float,
                  rocketLength: float
                  ) -> None:
-        super().__init__([mass],
-                         [originCoordinates],
-                         [rotationMatrix],
-                         [velocityMatrix],
-                         [accelerationMatrix],
-                         [self._calculateMomentOfInertia()],
-                         [angularVelocity],
-                         [angularAcceleration])
+        super().__init__(initialMass,
+                         originCoordinates,
+                         rotationMatrix,
+                         velocityMatrix,
+                         accelerationMatrix,
+                         self._calculateMomentOfInertia(),
+                         angularVelocity,
+                         angularAcceleration)
         self.rocketLength = rocketLength
         self.positionOfReferencePoint = positionOfReferencePoint
         self.rocketRadius = rocketRadius
